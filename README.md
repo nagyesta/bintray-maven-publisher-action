@@ -30,7 +30,8 @@ multiple repositories or configure some external tool to sync from Github Packag
 ### Configuration
 
 ```yml
-  - uses: nagyesta/bintray-artifact-uploader@1.0.0
+  - name: Publish to Bintray
+    uses: nagyesta/bintray-maven-publisher-action@v1.0.1
     with:
       DEBUG_LOG: "true"
       INFO_LOG: "true"
