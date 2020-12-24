@@ -31,7 +31,7 @@ multiple repositories or configure some external tool to sync from Github Packag
 
 ```yml
   - name: Publish to Bintray
-    uses: nagyesta/bintray-maven-publisher-action@v1.0.1
+    uses: nagyesta/bintray-maven-publisher-action@v1.0.2
     with:
       DEBUG_LOG: "true"
       INFO_LOG: "true"
@@ -39,9 +39,9 @@ multiple repositories or configure some external tool to sync from Github Packag
       ERROR_LOG: "true"
       DRY_RUN: "true"
       POM_FILE_NAME: "build/publications/mavenJava/pom-default.xml"
-      JAR_FILE_NAME: "build/libs/build.jar"
-      SOURCE_JAR_FILE_NAME: "build/libs/build-sources.jar"
-      JAVADOC_JAR_FILE_NAME: "build/libs/build-javadoc.jar"
+      JAR_FILE_NAME: "build/libs/build-*[0-9].jar"
+      SOURCE_JAR_FILE_NAME: "build/libs/build-*[0-9]-sources.jar"
+      JAVADOC_JAR_FILE_NAME: "build/libs/build-*[0-9]-javadoc.jar"
       ARTIFACT_GROUP_ID: "com.github.nagyesta.example"
       ARTIFACT_ARTIFACT_ID: "action-artifact"
       ARTIFACT_VERSION: "1.0.0"
