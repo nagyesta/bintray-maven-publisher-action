@@ -1,0 +1,6 @@
+# GROUP_ID:ARTIFACT_ID:CLASSIFIER:PACKAGING:File pattern
+
+com.github.nagyesta.example:action-artifact:-:pom:input/pom.xml
+com.github.nagyesta.example:action-artifact:-:jar:input/*-?.?.?.jar.content
+com.github.nagyesta.example:action-artifact:sources:jar:input/*sources.jar.content
+com.github.nagyesta.example:action-artifact:javadoc:jar:input/dummy-?.?.?-javadoc.jar.content
