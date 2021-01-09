@@ -29,9 +29,11 @@ multiple repositories or configure some external tool to sync from Github Packag
 
 ### Configuration
 
+#### Using the one-off artifact upload approach
+
 ```yml
   - name: Publish to Bintray
-    uses: nagyesta/bintray-maven-publisher-action@v1.0.2
+    uses: nagyesta/bintray-maven-publisher-action@v1.1.0
     with:
       DEBUG_LOG: "true"
       INFO_LOG: "true"
@@ -44,6 +46,46 @@ multiple repositories or configure some external tool to sync from Github Packag
       JAVADOC_JAR_FILE_NAME: "build/libs/build-*[0-9]-javadoc.jar"
       ARTIFACT_GROUP_ID: "com.github.nagyesta.example"
       ARTIFACT_ARTIFACT_ID: "action-artifact"
+      ARTIFACT_VERSION: "1.0.0"
+      API_USER: "nagyesta"
+      API_KEY: "${{ secrets.BINTRAY_TOKEN }}"
+      SUBJECT: "nagyesta"
+      REPO: "sandbox"
+      PACKAGE_NAME: "action-artifact"
+      BINTRAY_VERSION_PREFIX: "v"
+      BASE_URL: "https://api.bintray.com/"
+```
+
+#### Using a Manifest file for batch upload
+
+manifest.bau
+
+```
+# GROUP_ID:ARTIFACT_ID:CLASSIFIER:PACKAGING:File pattern
+
+com.github.gh-user:artifact.name:-:pom:pom.xml
+com.github.gh-user:artifact.name:-:jar:*-?.?.?.jar.content
+com.github.gh-user:artifact.name:sources:jar:*sources.jar.content
+com.github.gh-user:artifact.name:javadoc:jar:dummy-?.?.?-javadoc.jar.content
+com.github.gh-user:artifact.name-pom-only:-:pom:pom.xml
+com.github.gh-user:artifact.name-alt:-:pom:pom.xml
+com.github.gh-user:artifact.name-alt:-:jar:dummy-1.2.3.jar.content
+com.github.gh-user:artifact.name-alt:sources:jar:*-1.2.3-sources.jar.content
+com.github.gh-user:artifact.name-alt:javadoc:jar:dummy-1.2.3-javadoc.jar.content
+```
+
+Action
+
+```yml
+  - name: Publish to Bintray
+    uses: nagyesta/bintray-maven-publisher-action@v1.1.0
+    with:
+      DEBUG_LOG: "true"
+      INFO_LOG: "true"
+      WARN_LOG: "true"
+      ERROR_LOG: "true"
+      DRY_RUN: "true"
+      MANIFEST: "manifest.bau"
       ARTIFACT_VERSION: "1.0.0"
       API_USER: "nagyesta"
       API_KEY: "${{ secrets.BINTRAY_TOKEN }}"

@@ -1,8 +1,9 @@
-name: A workflow for my action file
+name: Test with one-off upload
 on:
-  create:
-    tags:
-      - v*
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
 
 jobs:
   build:
@@ -18,9 +19,10 @@ jobs:
           ERROR_LOG: "true"
           DRY_RUN: "true"
           POM_FILE_NAME: "input/pom.xml"
-          JAR_FILE_NAME: "input/dummy.jar.content"
-          SOURCE_JAR_FILE_NAME: "input/dummy-sources.jar.content"
-          JAVADOC_JAR_FILE_NAME: "input/dummy-javadoc.jar.content"
+          JAR_FILE_NAME: "input/dummy-?.?.?.jar.content"
+          SOURCE_JAR_FILE_NAME: "input/dummy-1.2.3-sources.jar.content"
+          JAVADOC_JAR_FILE_NAME: "input/dummy-*-javadoc.jar.content"
+          ARTIFACT_VERSION: "1.1.0"
           ARTIFACT_GROUP_ID: "com.github.nagyesta.example"
           ARTIFACT_ARTIFACT_ID: "action-artifact"
           API_USER: "nagyesta"

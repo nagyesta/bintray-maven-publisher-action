@@ -1,0 +1,31 @@
+name: Test with manifest upload
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: Bintray Maven Publisher Action
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: ./
+        with:
+          DEBUG_LOG: "true"
+          INFO_LOG: "true"
+          WARN_LOG: "true"
+          ERROR_LOG: "true"
+          DRY_RUN: "true"
+          MANIFEST: "input/manifest.bau"
+          ARTIFACT_VERSION: "1.1.0"
+          ARTIFACT_GROUP_ID: "com.github.nagyesta.example"
+          ARTIFACT_ARTIFACT_ID: "action-artifact"
+          API_USER: "nagyesta"
+          API_KEY: "${{ secrets.BINTRAY_TOKEN }}"
+          SUBJECT: "nagyesta"
+          REPO: "sandbox"
+          PACKAGE_NAME: "action-artifact"
+          BINTRAY_VERSION_PREFIX: "v"
+          BASE_URL: "https://api.bintray.com/"

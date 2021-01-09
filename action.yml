@@ -25,26 +25,26 @@ inputs:
     default: "false"
   POM_FILE_NAME:
     description: "The path where the POM file can be located relative to your content root."
-    required: true
-    default: "build/publications/mavenJava/pom-default.xml"
+    required: false
   JAR_FILE_NAME:
     description: "The path where the Jar file can be located relative to your content root."
     required: false
-    default: "build/libs/build.jar"
   SOURCE_JAR_FILE_NAME:
     description: "The path where the source Jar file can be located relative to your content root."
     required: false
-    default: "build/libs/build-sources.jar"
   JAVADOC_JAR_FILE_NAME:
     description: "The path where the Javadoc Jar file can be located relative to your content root."
     required: false
-    default: "build/libs/build-javadoc.jar"
+  MANIFEST:
+    description: "The path where the Upload manifest file can be located relative to your content root."
+    required: false
+    default: "manifest.bau"
   ARTIFACT_GROUP_ID:
     description: "The Maven group Id we need to use for this artifact."
-    required: true
+    required: false
   ARTIFACT_ARTIFACT_ID:
     description: "The Maven artifact Id we need to use for this artifact."
-    required: true
+    required: false
   ARTIFACT_VERSION:
     description: "The Maven optional artifact version we need to use for this artifact. If not specified, the action will attempt to determine the tag name pointing to HEAD."
     required: false
